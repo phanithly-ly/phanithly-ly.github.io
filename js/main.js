@@ -1,26 +1,16 @@
-// ============================================================
-// SINGLE PAGE NAVIGATION
-// Shows only one section at a time when nav link is clicked
-// Home always shows the Hero section
-// ============================================================
-
-// All sections that can be toggled (excluding hero which is always home)
+// All sections except hero
 const allSections = ['about', 'skills', 'projects', 'contact'];
 
-// Show only the selected section, hide all others
+// Show only one section
 function showSection(targetId) {
   allSections.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    if (id === targetId) {
-      el.style.display = 'block'; // Show the clicked section
-    } else {
-      el.style.display = 'none';  // Hide all others
-    }
+    el.style.display = (id === targetId) ? 'block' : 'none';
   });
 }
 
-// Show all sections (Home view)
+// Show ALL sections (Home view)
 function showHome() {
   allSections.forEach(id => {
     const el = document.getElementById(id);
@@ -28,59 +18,51 @@ function showHome() {
   });
 }
 
-// Hide all sections on first load except hero
+// Hide all sections on first load
 function initSections() {
   allSections.forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.style.display = 'none'; // Start hidden
+    if (el) el.style.display = 'none';
   });
 }
 
-// ============================================================
-// NAV CLICK HANDLER
-// ============================================================
+// Nav click handler
+const navLinks = document.querySelector('.nav-links');
 const navItems = document.querySelectorAll('.nav-links a');
 
 navItems.forEach(link => {
   link.addEventListener('click', (e) => {
-    e.preventDefault(); // Stop default jump scroll
+    e.preventDefault();
 
-    const href = link.getAttribute('href'); // e.g. "#about"
-    const targetId = href.replace('#', ''); // e.g. "about"
+    const href  = link.getAttribute('href');
+    const target = href.replace('#', '');
 
-    // Update active style on nav links
+    // Update active nav style
     navItems.forEach(a => a.classList.remove('active'));
     link.classList.add('active');
 
-    if (targetId === 'home') {
-      // Home: scroll to top, show all sections
+    if (target === 'home') {
+      // Home: show ALL sections + scroll to top
       showHome();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Other: show only that section
-      showSection(targetId);
+      // Other: show only that section + scroll to top
+      showSection(target);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Close mobile menu if open
+    // Close mobile menu
     navLinks.classList.remove('open');
   });
 });
 
-// ============================================================
-// HAMBURGER MENU (mobile)
-// ============================================================
+// Hamburger menu
 const hamburger = document.getElementById('hamburger');
-const navLinks  = document.querySelector('.nav-links');
-
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
 
-// ============================================================
-// FADE-IN ANIMATION
-// Elements animate in when visible
-// ============================================================
+// Fade-in animation on scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -97,9 +79,7 @@ document.querySelectorAll('.skill-card, .stat-card, .project-item, .contact-form
   observer.observe(el);
 });
 
-// ============================================================
-// CONTACT FORM — Formspree
-// ============================================================
+// Contact form — Formspree
 const form       = document.getElementById('contact-form');
 const btnText    = document.getElementById('btn-text');
 const btnLoading = document.getElementById('btn-loading');
@@ -109,20 +89,18 @@ const msgError   = document.getElementById('form-error');
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     btnText.style.display    = 'none';
     btnLoading.style.display = 'inline';
     msgSuccess.style.display = 'none';
     msgError.style.display   = 'none';
 
     try {
-      const response = await fetch(form.action, {
+      const res = await fetch(form.action, {
         method:  'POST',
         body:    new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
-
-      if (response.ok) {
+      if (res.ok) {
         msgSuccess.style.display = 'block';
         form.reset();
       } else {
@@ -137,10 +115,8 @@ if (form) {
   });
 }
 
-// ============================================================
-// INIT — hide all sections on page load, show hero only
-// ============================================================
+// Init — hide all sections, show hero only
 initSections();
 
-// Set Home as active by default
+// Set Home active by default
 document.querySelector('.nav-links a[href="#home"]')?.classList.add('active');
