@@ -255,6 +255,7 @@ ul, ol { list-style: none; }
 
 .hero {
   padding-top: 76px;
+  padding-bottom: clamp(36px, 5vw, 64px);
   overflow: hidden;
 }
 
@@ -393,6 +394,8 @@ ul, ol { list-style: none; }
 .hero-photo {
   position: relative;
   align-self: stretch;
+  container-type: inline-size;
+  padding-top: calc(var(--giant) * .25);
 
   display: flex;
   justify-content: center;
@@ -403,17 +406,32 @@ ul, ol { list-style: none; }
   position: absolute;
   z-index: 1;
 
-  top: calc(var(--giant) * .40);
+  bottom: 0;
   left: 50%;
 
   width: 84%;
   aspect-ratio: 1;
 
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 30%, #8d2832 0%, #661b23 55%, #43121a 100%);
-  box-shadow: 0 0 140px rgba(122, 37, 48, .4);
+  background: radial-gradient(circle at 38% 30%, #9a2d38 0%, #6e1d26 55%, #46131b 100%);
+  box-shadow: 0 0 120px rgba(122, 37, 48, .38), inset 0 -30px 60px rgba(0, 0, 0, .25);
 
-  translate: -50% var(--circle-y, 0px);
+  translate: -50% 0;
+}
+
+/* thin outer ring around the red circle */
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: -4cqw;
+  width: 92%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(198, 92, 102, .45);
+  border-radius: 50%;
+  translate: -50% 0;
+  pointer-events: none;
 }
 
 .hero-img {
@@ -421,15 +439,21 @@ ul, ol { list-style: none; }
   z-index: 3;
 
   width: 100%;
-  max-width: 640px;
+  max-width: none;
   height: auto;
 
-  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .45));
-  translate: 0 var(--photo-y, 0px);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .4));
 
-  /* fade the bottom edge into the board */
-  -webkit-mask-image: linear-gradient(#000 88%, transparent);
-          mask-image: linear-gradient(#000 88%, transparent);
+  /* The body is cut by the bottom curve of the red circle,
+     the head stays free above it (top half = full rectangle). */
+  -webkit-mask-image: linear-gradient(#000, #000), radial-gradient(circle 42cqw at 50% calc(100% - 42cqw), #000 99.6%, transparent 100%);
+          mask-image: linear-gradient(#000, #000), radial-gradient(circle 42cqw at 50% calc(100% - 42cqw), #000 99.6%, transparent 100%);
+  -webkit-mask-size: 100% calc(100% - 42cqw), 100% 100%;
+          mask-size: 100% calc(100% - 42cqw), 100% 100%;
+  -webkit-mask-position: top, 0 0;
+          mask-position: top, 0 0;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
 }
 
 /* RIGHT */
@@ -1366,7 +1390,6 @@ body.viewer-open { overflow: hidden; }
   .hero-left { grid-area: left; padding-top: 34px; }
   .hero-right { grid-area: right; padding-top: 34px; justify-self: stretch; max-width: none; }
 
-  .hero-img { -webkit-mask-image: none; mask-image: none; }
 
   .row-split,
   .row-about { grid-template-columns: 1fr; }
