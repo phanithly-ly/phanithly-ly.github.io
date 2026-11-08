@@ -1,107 +1,73 @@
 /* =========================================================
    PHANITH LY — EDIT YOUR CONTENT HERE
    ---------------------------------------------------------
-   You never need to touch index.html to add a project.
-   Just add / edit an object in the PROJECTS list below.
+   This is the ONLY file you need to edit to add videos or
+   change your contact details. Never touch index.html.
    ========================================================= */
 
 
-/* ---------- Personal info used on the page ---------- */
+/* ---------- Personal info ---------- */
 
 window.SITE = {
 
   email: "phanithly607@gmail.com",
 
-  /* Leave "" to hide the phone line. Example: "+855 12 345 678" */
-  phone: "",
+  /* Leave "" to hide the phone line */
+  phone: "085 663 266",
 
-  /* QR codes in "Scan to connect".
-     Put your LinkedIn / Behance links in `url`.
-     If a url is "", that QR is skipped and the fallback is used. */
+  /* "Scan to connect" QR codes (up to 4). Empty url = skipped.
+     icon names: https://icons.getbootstrap.com  (bi-linkedin, bi-behance …) */
   qr: [
-    { label: "LINKEDIN", icon: "bi-linkedin", url: "" },
-    { label: "BEHANCE",  icon: "bi-behance",  url: "" }
+    { label: "FACEBOOK",  icon: "bi-facebook",  url: "https://www.facebook.com/jimmie.bo.9" },
+    { label: "INSTAGRAM", icon: "bi-instagram", url: "https://www.instagram.com/jei_7879/" },
+    { label: "TIKTOK",    icon: "bi-tiktok",    url: "https://www.tiktok.com/@pnithediter" },
+    { label: "TELEGRAM",  icon: "bi-telegram",  url: "https://t.me/Lyhuang0173" }
   ],
 
-  /* Used when the QR links above are empty */
-  qrFallback: [
-    { label: "TELEGRAM", icon: "bi-telegram", url: "https://t.me/Lyhuang0173" },
-    { label: "TIKTOK",   icon: "bi-tiktok",   url: "https://www.tiktok.com/@pnithediter" }
-  ],
-
-  /* Where "View more projects" goes when there are 4 projects or fewer */
-  moreProjectsUrl: "https://www.tiktok.com/@pnithediter"
+  /* Where "View more projects" goes after all cards are shown */
+  moreProjectsUrl: "https://www.youtube.com/@LyPhanith-h8b"
 };
 
 
-/* ---------- Projects ----------
-   type:
-     "mp4"     → your own video file, e.g. src: "Video/brand-promo.mp4"
-     "youtube" → src: full YouTube link or video id
-     "vimeo"   → src: full Vimeo link or video id
-     "tiktok"  → src: full TikTok video link (…/video/1234567890)
-     "image"   → src: a big image (e.g. a 3D render)
-     "link"    → src: any website (opens in a new tab)
+/* =========================================================
+   MY VIDEOS
+   ---------------------------------------------------------
+   ➜ TO ADD A VIDEO: copy one line, paste it, change the
+     link / title / category. That's it.
 
-   thumb:   cover image (16:9, ~1280x720 .jpg/.webp, under ~250 KB)
-            e.g. "Image/projects/brand-promo.jpg"
-            Leave "" and a styled poster is drawn automatically.
-   preview: optional short muted .mp4 (3–6 s, under ~2 MB) that
-            plays when the mouse hovers the card.
-   vertical: true for 9:16 videos (TikTok / Reels / Shorts).
+       { link: "https://youtu.be/XXXXXXXXXXX", title: "My Video", category: "Blender" },
 
-   The first 4 projects show on the page; the rest appear
-   when visitors click "View more projects".
-------------------------------------------------- */
+   • link      YouTube, Vimeo, TikTok, or an .mp4 file path
+   • title     Name shown under the card
+   • category  Groups the filter buttons (e.g. "Blender", "After Effects",
+               "Video Editing"). A new word = a new filter button.
+
+   Thumbnails come from YouTube automatically.
+   The top 4 show first — put your best video at the top.
+
+   Optional extras you can add inside { }:
+     description: "One or two sentences about the project",
+     year: "2026",
+     tools: ["Blender", "After Effects"],
+     thumb: "Image/projects/my-cover.jpg",   // your own cover image
+     vertical: true,                          // 9:16 Shorts / TikTok
+   ========================================================= */
 
 window.PROJECTS = [
-  {
-    title: "3D Character Animation",
-    category: "3D / Animation",
-    type: "mp4",
-    src: "",
-    thumb: "",
-    preview: "",
-    headline: "Bring Ideas To Life",
-    description: "Character modeling, rigging and animation created in Blender, finished with cinematic lighting and compositing.",
-    tools: ["Blender", "After Effects"],
-    year: "2026"
-  },
-  {
-    title: "Short Film Editing",
-    category: "Video / Editing",
-    type: "youtube",
-    src: "",
-    thumb: "",
-    preview: "",
-    headline: "Every Frame Tells A Story",
-    description: "Story-driven edit with pacing, sound design and color grading to build emotion from the first shot to the last.",
-    tools: ["Premiere Pro", "After Effects"],
-    year: "2026"
-  },
-  {
-    title: "Motion Graphics Reel",
-    category: "Motion / Design",
-    type: "mp4",
-    src: "",
-    thumb: "",
-    preview: "",
-    headline: "Motion That Moves",
-    description: "Kinetic typography, logo reveals and animated transitions for social media and brand campaigns.",
-    tools: ["After Effects", "Illustrator"],
-    year: "2025"
-  },
-  {
-    title: "Brand Promo Video",
-    category: "Video / Content",
-    type: "tiktok",
-    src: "",
-    thumb: "",
-    preview: "",
-    vertical: true,
-    headline: "Brands In Motion",
-    description: "Short-form promotional content designed for TikTok and Instagram Reels, built to stop the scroll.",
-    tools: ["Premiere Pro", "Photoshop"],
-    year: "2025"
-  }
+
+  { link: "https://youtu.be/m80RBbOhum4", title: "Mercedes-AMG GT R", category: "Blender",
+    description: "A 3D product film of the 2017 Mercedes-AMG GT R: modeled, lit and animated in Blender with cinematic camera moves." },
+
+  { link: "https://youtu.be/uG6aKIPVue0", title: "BMW Animation", category: "After Effects",
+    description: "A fast-paced automotive motion piece with dynamic transitions, typography and sound-driven timing." },
+
+  { link: "https://youtu.be/slbNi5JbeYg", title: "Skincare Product Animation", category: "Blender",
+    description: "A clean 3D product animation for a skincare brand, with soft studio lighting and smooth reveals." },
+
+  { link: "https://youtu.be/t95NLtl83ys", title: "ABA Bank Animation", category: "After Effects",
+    description: "A brand motion graphics piece for ABA Bank, built around crisp animation and clear messaging." },
+
+  { link: "https://youtu.be/4GqRZMRfe0o", title: "Chinese New Year 2026", category: "After Effects",
+    description: "A festive Chinese New Year 2026 animation with rich color, particles and celebratory motion." },
+
 ];

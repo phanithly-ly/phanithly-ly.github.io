@@ -169,8 +169,32 @@ observeReveal();
    FEATURED WORK — built from js/projects.js
    ========================================================= */
 
-const PROJECTS = window.PROJECTS || [];
 const SITE = window.SITE || {};
+
+/* Turn the simple { link, title, category } entries into full projects:
+   detect the video type from the link and grab the YouTube thumbnail. */
+function detectType(src) {
+  if (/youtu\.?be/.test(src)) return "youtube";
+  if (/vimeo\.com/.test(src)) return "vimeo";
+  if (/tiktok\.com/.test(src)) return "tiktok";
+  if (/\.(mp4|webm|mov)(\?|$)/i.test(src)) return "mp4";
+  if (/\.(jpe?g|png|webp|gif)(\?|$)/i.test(src)) return "image";
+  return src ? "link" : "mp4";
+}
+
+const PROJECTS = (window.PROJECTS || []).map(raw => {
+  const p = { ...raw };
+  p.src = String(p.src || p.link || "").trim();
+  p.type = p.type || detectType(p.src);
+  p.category = p.category || "Project";
+  if (/shorts\//.test(p.src)) p.vertical = true;
+  if (!p.thumb && p.type === "youtube" && p.src) {
+    p.thumb = `https://i.ytimg.com/vi/${youtubeId(p.src)}/maxresdefault.jpg`;
+    p.thumbFallback = `https://i.ytimg.com/vi/${youtubeId(p.src)}/hqdefault.jpg`;
+  }
+  if (!p.tools) p.tools = [p.category];
+  return p;
+});
 const VISIBLE = 4;
 
 const workGrid = document.getElementById("workGrid");
@@ -200,23 +224,26 @@ function renderProjects() {
 
     const isVideo = ["mp4", "youtube", "vimeo", "tiktok"].includes(p.type);
     const icon = p.type === "link" ? "bi-box-arrow-up-right" : isVideo ? "bi-play-fill" : "bi-arrows-fullscreen";
+    const fallback = p.thumbFallback ? ` onerror="this.onerror=null;this.src='${escapeHTML(p.thumbFallback)}'"` : "";
 
     return `
-      <button class="work-card" type="button" data-index="${i}" data-reveal style="--d:${i % VISIBLE}" ${i >= VISIBLE ? "hidden" : ""}
-              aria-label="Open project: ${escapeHTML(p.title)}">
+      <button class="work-card" type="button" data-index="${i}" data-cat="${escapeHTML(p.category)}" data-reveal
+              aria-label="Play: ${escapeHTML(p.title)}">
         <div class="work-thumb">
           ${p.thumb
-            ? `<img src="${escapeHTML(p.thumb)}" alt="" loading="lazy" decoding="async">`
+            ? `<img src="${escapeHTML(p.thumb)}" alt="" loading="lazy" decoding="async"${fallback}>`
             : posterHTML(p, i)}
-          <span class="work-type">${TYPE_LABEL[p.type] || "PROJECT"}</span>
+          <span class="work-type">${escapeHTML(p.category)}</span>
           <span class="work-play"><i class="bi ${icon}"></i></span>
         </div>
         <h4>${escapeHTML(p.title)}</h4>
-        <span class="work-cat">${escapeHTML(p.category)}</span>
+        <span class="work-cat">${escapeHTML(p.year || TYPE_LABEL[p.type] || "PROJECT")}</span>
       </button>`;
   }).join("");
 
-  workGrid.querySelectorAll(".work-card").forEach(card => {
+  const cards = [...workGrid.querySelectorAll(".work-card")];
+
+  cards.forEach(card => {
 
     const p = PROJECTS[Number(card.dataset.index)];
 
@@ -243,36 +270,66 @@ function renderProjects() {
     }
   });
 
-  observeReveal(workGrid);
+  /* ---- Filter buttons (one per category) + "view more" ---- */
 
-  /* View more: expand hidden cards, or go to the external profile */
+  const filtersEl = document.getElementById("workFilters");
+  const categories = ["All", ...new Set(PROJECTS.map(p => p.category))];
+  let filter = "All";
+  let expanded = false;
+
+  if (filtersEl && categories.length > 2) {
+    filtersEl.innerHTML = categories.map(c => {
+      const count = c === "All" ? PROJECTS.length : PROJECTS.filter(p => p.category === c).length;
+      return `<button type="button" class="chip${c === "All" ? " is-active" : ""}" data-filter="${escapeHTML(c)}">${escapeHTML(c)} <sup>${count}</sup></button>`;
+    }).join("");
+
+    filtersEl.addEventListener("click", event => {
+      const chip = event.target.closest(".chip");
+      if (!chip) return;
+      filter = chip.dataset.filter;
+      expanded = false;
+      filtersEl.querySelectorAll(".chip").forEach(c => c.classList.toggle("is-active", c === chip));
+      applyView();
+    });
+  }
+
+  function applyView() {
+    let rank = 0;
+    cards.forEach(card => {
+      const match = filter === "All" || card.dataset.cat === filter;
+      const show = match && (filter !== "All" || expanded || rank < VISIBLE);
+      if (match) rank++;
+      card.hidden = !show;
+      card.style.setProperty("--d", show ? rank % VISIBLE : 0);
+    });
+
+    if (!viewAll) return;
+    if (filter === "All" && PROJECTS.length > VISIBLE) {
+      viewAll.innerHTML = expanded
+        ? 'Show less <i class="bi bi-arrow-up"></i>'
+        : `View all ${PROJECTS.length} projects <i class="bi bi-arrow-right"></i>`;
+      viewAll.dataset.mode = "toggle";
+    } else {
+      viewAll.innerHTML = 'More on YouTube <i class="bi bi-arrow-up-right"></i>';
+      viewAll.dataset.mode = "external";
+    }
+    observeReveal(workGrid);
+  }
+
   viewAll?.addEventListener("click", event => {
+    event.preventDefault();
 
-    const hidden = workGrid.querySelectorAll(".work-card[hidden]");
-
-    if (hidden.length) {
-      event.preventDefault();
-      hidden.forEach(card => card.hidden = false);
-      observeReveal(workGrid);
-      viewAll.innerHTML = 'Show less <i class="bi bi-arrow-up"></i>';
-      viewAll.dataset.expanded = "1";
+    if (viewAll.dataset.mode === "toggle") {
+      expanded = !expanded;
+      applyView();
+      if (!expanded) document.getElementById("work").scrollIntoView({ behavior: "smooth" });
       return;
     }
 
-    if (viewAll.dataset.expanded) {
-      event.preventDefault();
-      workGrid.querySelectorAll(".work-card").forEach((card, i) => card.hidden = i >= VISIBLE);
-      viewAll.innerHTML = 'View more projects <i class="bi bi-arrow-right"></i>';
-      delete viewAll.dataset.expanded;
-      document.getElementById("work").scrollIntoView({ behavior: "smooth" });
-      return;
-    }
-
-    if (SITE.moreProjectsUrl) {
-      event.preventDefault();
-      window.open(SITE.moreProjectsUrl, "_blank", "noopener");
-    }
+    if (SITE.moreProjectsUrl) window.open(SITE.moreProjectsUrl, "_blank", "noopener");
   });
+
+  applyView();
 }
 
 renderProjects();
@@ -413,7 +470,7 @@ viewer?.addEventListener("keydown", event => {
 
   const primary = (SITE.qr || []).filter(q => q.url);
   const fallback = (SITE.qrFallback || []).filter(q => q.url);
-  const codes = [...primary, ...fallback].slice(0, 2);
+  const codes = [...primary, ...fallback].slice(0, 4);
 
   const draw = () => {
 
