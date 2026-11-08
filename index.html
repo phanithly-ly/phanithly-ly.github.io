@@ -1,267 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Phanith Ly — Content Creator</title>
-  <link rel="stylesheet" href="CSS/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <link rel="icon" href="data:,">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Phanith Ly — Creative Portfolio</title>
+  <meta name="description" content="Phanith Ly — content creator, video editor, 3D / motion designer and web designer based in Cambodia.">
+  <meta name="theme-color" content="#120909">
+
+  <meta property="og:title" content="Phanith Ly — Creative Portfolio">
+  <meta property="og:description" content="Cinematic video editing, 3D animation, motion design and web design.">
+  <meta property="og:image" content="Image/profile.png">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23120909'/%3E%3Ctext x='32' y='44' font-family='Impact,sans-serif' font-size='34' text-anchor='middle' fill='%23efe4d6'%3EPL%3C/text%3E%3C/svg%3E">
+
+  <!-- Mark that JS is on, so content is never hidden when JS is off -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@13/font/simple-icons.min.css">
+
+  <link rel="stylesheet" href="CSS/style.css">
 </head>
+
 <body>
 
-  <!-- ==================== PARTICLES (Fixed — visible on ALL sections) ==================== -->
-  <div id="particles-js"></div>
+  <!-- ================= PAGE LOADER ================= -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <span class="loader-name">PHANITH LY</span>
+    <span class="loader-bar"><i></i></span>
+  </div>
 
-  <!-- ==================== NAVBAR ==================== -->
-  <nav class="navbar">
-    <div class="nav-logo">Ph<span class="dot">.</span></div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
+
+  <!-- ================= TOP BAR / NAV ================= -->
+  <header class="topbar">
+    <a href="#home" class="topbar-label">CREATIVE PORTFOLIO</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contact" class="topbar-status btn-hire">
+      AVAILABLE FOR FREELANCE
+      <i class="bi bi-circle-fill"></i>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
       <span></span><span></span><span></span>
-    </div>
-  </nav>
+    </button>
+  </header>
 
-  <!-- ==================== HERO ==================== -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <p class="hero-eyebrow" data-aos="fade-down" data-aos-duration="800">
-        Hello, my name is
-      </p>
-      <h1 class="hero-name" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-        Phanith Ly<span class="cursor">_</span>
-      </h1>
-      <p class="hero-title" data-aos="fade-right" data-aos-duration="800" data-aos-delay="400">
-        <span id="typed-text"></span>
-      </p>
-      <div class="hero-btns" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
-        <a href="#projects" class="btn-primary">View My Work</a>
-        <a href="#contact" class="btn-secondary">Get In Touch</a>
-      </div>
-    </div>
 
-    <div class="hero-image-wrap" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-      <div class="hero-image-border">
-        <img src="Image/profile.jpg" alt="Phanith Ly" class="hero-image" />
-      </div>
-      <div class="hero-image-glow"></div>
-    </div>
-  </section>
+  <main>
 
-  <!-- ==================== ABOUT ==================== -->
-  <section class="section" id="about">
-    <div class="container">
-      <p class="section-label" data-aos="fade-right" data-aos-duration="600">— About Me</p>
-      <h2 class="section-title" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">Who Am I?</h2>
+    <!-- ================= HERO / POSTER ================= -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
 
-      <div class="about-layout">
-        <div class="about-text" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
-          <p>My name is <strong>Phanith Ly</strong>, a Content Creator and Digital Artist passionate about 3D Animation and Video Editing.</p>
-          <p>I have experience using Adobe Premiere Pro, After Effects, Blender, and many other tools to craft high-quality visual content.</p>
-          <p>Beyond creative work, I also enjoy Web Development — building things with HTML, CSS, JavaScript, and Python.</p>
-          <p>My goal is to create work that carries real value and share it with the world.</p>
-          <p>I believe every great piece of content comes from the heart, not just technique.</p>
+        <h1 class="hero-giant" aria-label="Portfolio">
+          <span class="ch" style="--i:0">P</span><span class="ch" style="--i:1">O</span><span class="ch" style="--i:2">R</span><span class="ch" style="--i:3">T</span><span class="ch" style="--i:4">F</span><span class="ch" style="--i:5">O</span><span class="ch" style="--i:6">L</span><span class="ch" style="--i:7">I</span><span class="ch" style="--i:8">O</span>
+        </h1>
+
+        <!-- rotating red badge -->
+        <div class="hero-badge" aria-hidden="true">
+          <svg viewBox="0 0 100 100" class="badge-ring">
+            <defs>
+              <path id="badgeCircle" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"></path>
+            </defs>
+            <text font-size="8.4" letter-spacing="2.6">
+              <textPath href="#badgeCircle">EDITING • DESIGNING • CREATING • STORYTELLING •</textPath>
+            </text>
+          </svg>
+          <svg viewBox="0 0 40 40" class="badge-star"><path d="M20 0 C21 14 26 19 40 20 C26 21 21 26 20 40 C19 26 14 21 0 20 C14 19 19 14 20 0Z"/></svg>
         </div>
 
-        <div class="about-stats">
-          <div class="stat-card" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
-            <span class="stat-num">3+</span>
-            <span class="stat-label">Years Experience</span>
+        <div class="hero-grid">
+
+          <!-- LEFT -->
+          <div class="hero-left">
+            <h2 class="hero-role">VIDEO / 3D /<br>MOTION / WEB</h2>
+
+            <ul class="hero-tags">
+              <li>VIDEO EDITING</li>
+              <li>3D ANIMATION</li>
+              <li>MOTION DESIGN</li>
+              <li>WEB DESIGN</li>
+            </ul>
+
+            <span class="red-dash"></span>
+
+            <blockquote class="hero-quote">
+              <span class="quote-mark">&ldquo;</span>
+              <p>I CREATE CINEMATIC VISUALS THAT ARE BOLD, HONEST AND UNFORGETTABLE.</p>
+              <span class="quote-sign">Phanith Ly</span>
+            </blockquote>
           </div>
-          <div class="stat-card" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
-            <span class="stat-num">50+</span>
-            <span class="stat-label">Projects Done</span>
+
+          <!-- CENTER PHOTO -->
+          <div class="hero-photo">
+            <div class="hero-circle"></div>
+            <img src="Image/profile.png" alt="Portrait of Phanith Ly" class="hero-img" fetchpriority="high">
           </div>
-          <div class="stat-card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
-            <span class="stat-num">10+</span>
-            <span class="stat-label">Skills</span>
-          </div>
-          <div class="stat-card" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="600">
-            <span class="stat-num">∞</span>
-            <span class="stat-label">Creativity</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ==================== SKILLS ==================== -->
-  <section class="section section-dark" id="skills">
-    <div class="container">
-      <p class="section-label" data-aos="fade-right">— Skills</p>
-      <h2 class="section-title" data-aos="fade-right" data-aos-delay="100">What I Can Do</h2>
-      <div class="skills-grid">
+          <!-- RIGHT -->
+          <div class="hero-right">
+            <h2 class="hero-name">PHANITH<br>LY</h2>
+            <span class="hero-title">CONTENT CREATOR &amp; DIGITAL ARTIST</span>
 
-        <div class="skill-card" data-aos="flip-left" data-aos-delay="0"   data-aos-duration="800">
-          <div class="skill-icon"><i class="fa-solid fa-cube"></i></div>
-          <h3>3D Animation</h3>
-          <p>Blender, Cinema 4D</p>
-        </div>
-        <div class="skill-card" data-aos="flip-left" data-aos-delay="100" data-aos-duration="800">
-          <div class="skill-icon"><i class="fa-solid fa-film"></i></div>
-          <h3>Video Editing</h3>
-          <p>Premiere Pro, After Effects</p>
-        </div>
-        <div class="skill-card" data-aos="flip-left" data-aos-delay="200" data-aos-duration="800">
-          <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-          <h3>Web Development</h3>
-          <p>HTML, CSS, JavaScript</p>
-        </div>
-        <div class="skill-card" data-aos="flip-left" data-aos-delay="300" data-aos-duration="800">
-          <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
-          <h3>Programming</h3>
-          <p>Python</p>
-        </div>
-        <div class="skill-card" data-aos="flip-left" data-aos-delay="400" data-aos-duration="800">
-          <div class="skill-icon"><i class="fa-solid fa-photo-film"></i></div>
-          <h3>Motion Graphics</h3>
-          <p>After Effects, Premiere Pro</p>
-        </div>
-        <div class="skill-card" data-aos="flip-left" data-aos-delay="500" data-aos-duration="800">
-          <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
-          <h3>Content Creation</h3>
-          <p>Social Media, Storytelling</p>
-        </div>
+            <p class="hero-bio">
+              I'm a content creator crafting cinematic, modern and
+              story-driven visuals. I help brands communicate,
+              engage and grow through thoughtful creative work.
+            </p>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== PROJECTS ==================== -->
-  <section class="section" id="projects">
-    <div class="container">
-      <p class="section-label" data-aos="fade-right">— Projects</p>
-      <h2 class="section-title" data-aos="fade-right" data-aos-delay="100">My Work</h2>
-      <div class="projects-list">
-
-        <div class="project-item" data-aos="fade-up" data-aos-delay="0"   data-aos-duration="700">
-          <div class="project-num">01</div>
-          <div class="project-info">
-            <h3>3D Character Animation</h3>
-            <p>3D character animation created for social media content</p>
-          </div>
-          <div class="project-tools"><span>Blender</span><span>After Effects</span></div>
-        </div>
-
-        <div class="project-item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
-          <div class="project-num">02</div>
-          <div class="project-info">
-            <h3>Short Film Editing</h3>
-            <p>Short video editing for YouTube channel</p>
-          </div>
-          <div class="project-tools"><span>Premiere Pro</span><span>After Effects</span></div>
-        </div>
-
-        <div class="project-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
-          <div class="project-num">03</div>
-          <div class="project-info">
-            <h3>Motion Graphics Intro</h3>
-            <p>Logo animation and intro video creation</p>
-          </div>
-          <div class="project-tools"><span>After Effects</span><span>Premiere Pro</span></div>
-        </div>
-
-        <div class="project-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
-          <div class="project-num">04</div>
-          <div class="project-info">
-            <h3>3D Product Visualization</h3>
-            <p>3D product render for client presentation</p>
-          </div>
-          <div class="project-tools"><span>Blender</span><span>Cinema 4D</span></div>
-        </div>
-
-        <div class="project-item" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
-          <div class="project-num">05</div>
-          <div class="project-info">
-            <h3>Personal Portfolio Website</h3>
-            <p>This very website — built from scratch</p>
-          </div>
-          <div class="project-tools"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CONTACT ==================== -->
-  <section class="section section-dark" id="contact">
-    <div class="container">
-      <p class="section-label" data-aos="fade-right">— Contact</p>
-      <h2 class="section-title" data-aos="fade-right" data-aos-delay="100">Get In Touch</h2>
-      <p class="contact-sub" data-aos="fade-right" data-aos-delay="150">Have a project or collaboration in mind? Send me a message!</p>
-
-      <div class="contact-grid">
-
-        <div class="contact-form-wrap" data-aos="fade-right" data-aos-delay="200" data-aos-duration="800">
-          <form id="contact-form" action="https://formspree.io/f/mdarllke" method="POST">
-            <input type="hidden" name="_subject" value="New message from Portfolio Website" />
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-            </div>
-            <button type="submit" class="btn-primary submit-btn">
-              <span id="btn-text"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
-              <span id="btn-loading" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i> Sending...</span>
-            </button>
-            <p id="form-success" class="form-msg success" style="display:none;">✅ Message sent! I'll reply soon.</p>
-            <p id="form-error"   class="form-msg error"   style="display:none;">❌ Something went wrong. Please try again.</p>
-          </form>
-        </div>
-
-        <div class="contact-info" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
-          <div class="info-item">
-            <i class="fa-solid fa-envelope"></i>
-            <div>
-              <p class="info-label">Email</p>
-              <a href="mailto:phanithly607@gmail.com">phanithly607@gmail.com</a>
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span class="stat-icon"><i class="bi bi-award"></i></span>
+                <strong data-count="3">3+</strong>
+                <span>YEARS<br>EXPERIENCE</span>
+              </div>
+              <div class="hero-stat">
+                <span class="stat-icon"><i class="bi bi-collection-play"></i></span>
+                <strong data-count="50">50+</strong>
+                <span>PROJECTS<br>COMPLETED</span>
+              </div>
+              <div class="hero-stat">
+                <span class="stat-icon"><i class="bi bi-emoji-smile"></i></span>
+                <strong data-count="20">20+</strong>
+                <span>HAPPY<br>CLIENTS</span>
+              </div>
             </div>
           </div>
-          <div class="social-links">
-            <a href="https://www.facebook.com/jimmie.bo.9" target="_blank" rel="noopener" class="social-btn facebook" data-aos="fade-left" data-aos-delay="250">
-              <i class="fa-brands fa-facebook-f"></i> Facebook
-            </a>
-            <a href="https://www.instagram.com/jei_7879/?hl=en" target="_blank" rel="noopener" class="social-btn instagram" data-aos="fade-left" data-aos-delay="320">
-              <i class="fa-brands fa-instagram"></i> Instagram
-            </a>
-            <a href="https://www.tiktok.com/@pnithediter?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-btn tiktok" data-aos="fade-left" data-aos-delay="390">
-              <i class="fa-brands fa-tiktok"></i> TikTok
-            </a>
-            <a href="https://t.me/Lyhuang0173" target="_blank" rel="noopener" class="social-btn telegram" data-aos="fade-left" data-aos-delay="460">
-              <i class="fa-brands fa-telegram"></i> Telegram
-            </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= SCROLL IMAGE SEQUENCE (shown only if frames exist) ================= -->
+    <section class="scroll-sequence" id="sequence">
+      <div class="sequence-sticky">
+        <span class="sequence-label">SCROLL</span>
+        <canvas id="sequenceCanvas"></canvas>
+      </div>
+    </section>
+
+
+    <!-- ================= BOARD (all sections in one framed layout) ================= -->
+    <div class="board">
+
+      <!-- WHAT I DO -->
+      <section class="row row-do" data-reveal>
+        <h3 class="block-title">WHAT I DO</h3>
+
+        <div class="do-grid">
+          <article class="do-card" data-reveal style="--d:0">
+            <i class="bi bi-film"></i>
+            <h4>VIDEO EDITING</h4>
+            <p>Cinematic cuts, color and pacing that hold attention.</p>
+          </article>
+          <article class="do-card" data-reveal style="--d:1">
+            <i class="bi bi-box"></i>
+            <h4>3D ANIMATION</h4>
+            <p>Character and product animation for digital media.</p>
+          </article>
+          <article class="do-card" data-reveal style="--d:2">
+            <i class="bi bi-magic"></i>
+            <h4>MOTION GRAPHICS</h4>
+            <p>Titles, logo reveals and smooth motion storytelling.</p>
+          </article>
+          <article class="do-card" data-reveal style="--d:3">
+            <i class="bi bi-window-stack"></i>
+            <h4>WEB DESIGN</h4>
+            <p>Modern, responsive interfaces built with clean code.</p>
+          </article>
+          <article class="do-card" data-reveal style="--d:4">
+            <i class="bi bi-grid-1x2"></i>
+            <h4>CONTENT STRATEGY</h4>
+            <p>Turning ideas into content that fits every platform.</p>
+          </article>
+        </div>
+      </section>
+
+
+      <!-- PROCESS + FEATURED WORK -->
+      <section class="row row-split" id="process">
+
+        <div class="cell process-col" data-reveal>
+          <h3 class="block-title">MY PROCESS</h3>
+
+          <ol class="process-list">
+            <li>
+              <span class="p-num">01</span>
+              <span class="p-icon"><i class="bi bi-compass"></i></span>
+              <div><h4>DISCOVER</h4><p>Understanding goals, audience and project requirements.</p></div>
+            </li>
+            <li>
+              <span class="p-num">02</span>
+              <span class="p-icon"><i class="bi bi-clipboard-data"></i></span>
+              <div><h4>DEFINE</h4><p>Research, storyboard and structuring the right solution.</p></div>
+            </li>
+            <li>
+              <span class="p-num">03</span>
+              <span class="p-icon"><i class="bi bi-vector-pen"></i></span>
+              <div><h4>DESIGN</h4><p>Crafting clean, modern and story-driven visuals.</p></div>
+            </li>
+            <li>
+              <span class="p-num">04</span>
+              <span class="p-icon"><i class="bi bi-display"></i></span>
+              <div><h4>DEVELOP</h4><p>Editing, animating and building the final piece.</p></div>
+            </li>
+            <li>
+              <span class="p-num">05</span>
+              <span class="p-icon"><i class="bi bi-cloud-arrow-up"></i></span>
+              <div><h4>DELIVER</h4><p>Testing, refining and delivering pixel-perfect work.</p></div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="cell work-col" id="work" data-reveal>
+          <div class="work-head">
+            <h3 class="block-title">FEATURED WORK</h3>
+            <a href="#work" class="view-all" id="viewAll">View more projects <i class="bi bi-arrow-right"></i></a>
+          </div>
+
+          <!-- Cards are generated from js/projects.js -->
+          <div class="work-grid" id="workGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- ABOUT + TOOLS -->
+      <section class="row row-about" id="about">
+
+        <div class="cell about-col" data-reveal>
+          <h3 class="block-title">ABOUT ME</h3>
+
+          <div class="about-body">
+            <div class="about-photo">
+              <img src="Image/profile.png" alt="Phanith Ly" loading="lazy">
+            </div>
+
+            <div class="about-text">
+              <p>
+                I'm a Content Creator and Digital Artist with a passion
+                for cinematic visuals, clean motion and seamless storytelling.
+              </p>
+              <p>
+                I believe great creative work isn't only about how it
+                looks, but how it makes people feel.
+              </p>
+
+              <ul class="about-list">
+                <li>Detail oriented</li>
+                <li>Storyteller at heart</li>
+                <li>Minimal &amp; cinematic</li>
+                <li>Always learning</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-      </div>
+        <div class="cell tools-col" data-reveal>
+          <h3 class="block-title">TOOLS I USE</h3>
+
+          <div class="tools-row">
+            <div class="tool"><span class="tool-box"><img src="Image/Blender icon.png" alt=""></span><span>Blender</span></div>
+            <div class="tool"><span class="tool-box"><img src="Image/PR icon.png" alt=""></span><span>Premiere Pro</span></div>
+            <div class="tool"><span class="tool-box"><img src="Image/AE icon.png" alt=""></span><span>After Effects</span></div>
+            <div class="tool"><span class="tool-box"><img src="Image/PS icon.png" alt=""></span><span>Photoshop</span></div>
+            <div class="tool"><span class="tool-box"><img src="Image/AI icon.png" alt=""></span><span>Illustrator</span></div>
+            <div class="tool"><span class="tool-box"><i class="si si-figma"></i></span><span>Figma</span></div>
+            <div class="tool"><span class="tool-box"><i class="si si-webflow"></i></span><span>Webflow</span></div>
+          </div>
+
+          <blockquote class="testimonial">
+            <span class="quote-mark">&ldquo;</span>
+            <p>
+              Phanith is an exceptional creator who delivers outstanding
+              work on time and understands the story like no one else.
+            </p>
+            <cite>— Client Feedback</cite>
+          </blockquote>
+        </div>
+
+      </section>
+
+
+      <!-- CONTACT -->
+      <section class="row row-collab" id="contact">
+
+        <div class="cell collab-left" data-reveal>
+          <h3 class="block-title">LET'S COLLABORATE</h3>
+          <p>Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+
+          <ul class="collab-contacts" id="contactList">
+            <li><span class="c-icon"><img src="Image/email icon.png" alt=""></span><a href="mailto:phanithly607@gmail.com">phanithly607@gmail.com</a></li>
+            <!-- phone is added from js/projects.js (SITE.phone) -->
+            <li><span class="c-icon"><img src="Image/location icon.png" alt=""></span><span>Based in Cambodia</span></li>
+            <li><span class="c-icon"><i class="bi bi-globe2"></i></span><a href="https://phanithly-ly.github.io" target="_blank" rel="noopener">phanithly-ly.github.io</a></li>
+          </ul>
+
+          <div class="socials">
+            <a href="https://www.facebook.com/jimmie.bo.9" target="_blank" rel="noopener" class="social" aria-label="Facebook"><img src="Image/facebook icon.png" alt=""></a>
+            <a href="https://www.instagram.com/jei_7879/?hl=en" target="_blank" rel="noopener" class="social" aria-label="Instagram"><img src="Image/instragram icon.png" alt=""></a>
+            <a href="https://www.tiktok.com/@pnithediter" target="_blank" rel="noopener" class="social" aria-label="TikTok"><img src="Image/tiktok icon.png" alt=""></a>
+            <a href="https://t.me/Lyhuang0173" target="_blank" rel="noopener" class="social" aria-label="Telegram"><img src="Image/telegram icon.png" alt=""></a>
+          </div>
+        </div>
+
+        <div class="cell collab-mid" data-reveal>
+          <h3 class="block-title">SCAN TO CONNECT</h3>
+          <!-- QR codes are generated from js/projects.js (SITE.qr) -->
+          <div class="qr-row" id="qrRow"></div>
+        </div>
+
+        <div class="cell collab-right" data-reveal>
+          <svg class="collab-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C21 14 26 19 40 20 C26 21 21 26 20 40 C19 26 14 21 0 20 C14 19 19 14 20 0Z"/></svg>
+          <p class="collab-tagline">CREATING VISUALS.<br>TELLING STORIES.<br>BUILDING CONNECTIONS.</p>
+          <span class="signature">Phanith Ly</span>
+          <svg class="signature-line" viewBox="0 0 200 20" aria-hidden="true"><path d="M2 14 C40 4 80 18 120 9 S180 6 198 12"/></svg>
+        </div>
+
+      </section>
+
     </div>
-  </section>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="footer">
-    <p>© 2026 Phanith Ly. Built with ❤️</p>
-  </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-  <script src="js/main.js"></script>
+    <footer class="footer-bottom">
+      <span>© <span id="year">2026</span> PHANITH LY — ALL RIGHTS RESERVED</span>
+      <a href="#home" class="back-top">BACK TO TOP <i class="bi bi-arrow-up"></i></a>
+    </footer>
+
+  </main>
+
+
+  <!-- ================= VIDEO / PROJECT VIEWER ================= -->
+  <dialog class="viewer" id="viewer" aria-labelledby="viewerTitle">
+    <button class="viewer-close" id="viewerClose" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+
+    <div class="viewer-media" id="viewerMedia"></div>
+
+    <div class="viewer-info">
+      <span class="viewer-cat" id="viewerCat"></span>
+      <h3 id="viewerTitle"></h3>
+      <p id="viewerDesc"></p>
+      <ul class="viewer-meta" id="viewerMeta"></ul>
+    </div>
+
+    <div class="viewer-nav">
+      <button id="viewerPrev" aria-label="Previous project"><i class="bi bi-arrow-left"></i></button>
+      <button id="viewerNext" aria-label="Next project"><i class="bi bi-arrow-right"></i></button>
+    </div>
+  </dialog>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js" defer></script>
+  <script src="js/projects.js" defer></script>
+  <script src="js/main.js" defer></script>
+
 </body>
 </html>
