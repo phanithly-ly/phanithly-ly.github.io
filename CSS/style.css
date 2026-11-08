@@ -1519,3 +1519,21 @@ body.viewer-open { overflow: hidden; }
   .qr-row { grid-template-columns: repeat(2, minmax(0, 120px)); gap: 18px 28px; }
   .qr-code { max-width: 120px; }
 }
+
+/* CV link next to the social icons */
+.social--cv {
+  width: auto;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  border-color: rgba(198, 92, 102, .55);
+}
+
+.social--cv i { font-size: 15px; color: var(--red-soft); }
+
+.c-sep { margin: 0 8px; color: var(--gray-dark); }
